@@ -112,9 +112,11 @@
 
  import {userService} from "./services";
 
-userService.getAll()
-    .then(value => value.data)
+// userService.getAll()
+//     .then(value => value.data[0].address.city)
 
+userService.getById(2)
+    .then(({data})=> console.log(data.address.city))
 
 
 

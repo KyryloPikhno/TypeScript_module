@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "typescript": "^4.8.4",
-    "axios": "^0.27.2"
+    "axios": "^0.27.2",
+    "highland": "^2.9.0",
+    "@types/highland": "https://registry.npmjs.org/@types/highland/-/highland-1.14.30.tgz"
   },
   "repository": {
     "type": "git",
