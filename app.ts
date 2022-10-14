@@ -1,136 +1,70 @@
-// const x =(str: string): number|string => {
-//     return 13
-// }
 
-// interface IUser {
-//     name: string,
-//     age: number,
-//     status: boolean
-// }
+// 1) створити інтерфейс на основі цього объекта:
+//     Зверніть увагу там де масиви... в них може бути багато однотипних обїектів
 
-// const user:IUser ={
-//     name:'Max',
-//     age:12,
-//     status:false
-// }
+interface ICore {
+   flight: number,
+   core: {
+    reuse_count: number,
+    status: unknown | boolean
+   }
+ }
 
-// const user: Partial<IUser> = {
-//     status: false
-// }
+ interface IPayload{
+   payload_type: string,
+   payload_mass_kg: number,
+   payload_mass_lbs: number
+ }
 
-// console.log(user.name);
+interface IRocket{
+  mission_name: string,
+     launch_date_local: Date,
+     launch_site: {
+  site_name_long: string
+},
+  links: {
+  article_link: string,
+      video_link: string
+},
+ rocket: {
+ rocket_name: string,
+     first_stage: {
+  cores:ICore[]
+ },
+ second_stage: {
+  payloads: IPayload[]
+ }
+}
+}
 
-// interface IUser<T> {
-//     name: string,
-//     age: number,
-//     status: boolean,
-//     data:T
-// }
-//
-// const user:IUser<number[]>={
-//     name: 'Max',
-//     age: 13,
-//     status: false,
-//     data:[1,2,3]
-// }
+// ---------------------------------------------------------------------------—————————
+// 2) протипізувати функції:
 
-// class User {
-//
-//     constructor(public id: number,private name:string, private age: number) {
-//         this.id = id;
-//         this.name = name;
-//         this.age = age
-//     }
-// }
-//
-// const user = new User(15,'Max',12)
-// console.log(user.id)
-//
-// const a = (str:string):void=>{
-// //without return
-// }
-//
-// interface  IShapeActions{
-//     area:()=>number,
-//     perimeter:()=>number
-// }
-//
-// interface IGreeting{
-//     hello:()=>void
-// }
-//
-// class Rectangle implements IShapeActions, IGreeting {
-//     constructor(private a: number, private b: number) {
-//     }
-//
-//     area(): number {
-//         return this.a * this.b
-//     }
-//
-//     hello(): void {
-//         console.log('Hi');
-//     }
-//
-//     perimeter(): number {
-//         return this.a * 2 + this.b * 2;
-//     }
-// }
-//
-// const rectangle = new Rectangle(5,10)
-//
-// console.log(rectangle.area());
-//
-// class Triangle implements  IShapeActions{
-//     constructor(private a:number,private b:number, private c:number ) {
-//     }
-//
-//     area():number {
-//        return this.a * this.b * this.c
-//     }
-//
-//     perimeter():number{
-//         return this.c * 2 / this.b
-//     }
-// }
-//
-// const triangle = new Triangle(1,14,66)
-//
-// const shapes: IShapeActions[]=[new Triangle(1,14,66), new Triangle(1,4,4)]
-//
-// for(let shape of shapes){
-//     console.log(shape.area());
-//     console.log(shape.perimeter());
-// }
+interface IUser{
+   name:string,
+   age:number,
+   gender:string
+}
 
-// const asd=():number => {
-//     return 18
-// }
-//
-// type MyFunction = ReturnType<typeof asd>
-//
-// const a:MyFunction = 15
+const user: IUser = {
+     name:'Max',
+     age:18,
+     gender:'male'
+    }
 
- import {userService} from "./services";
+function sum(a:number, b:number):number{
+ return a+b
+}
 
-// userService.getAll()
-//     .then(value => value.data[0].address.city)
+function showSum(a:number, b:number):void{
+ console.log(a + b);
+}
 
-userService.getById(2)
-    .then(({data})=> console.log(data.address.city))
+function incAge(someUser:IUser, inc:number):IUser{
+ someUser.age+=inc
+ return someUser
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+console.log(sum(1, 2));
+showSum(2,3)
+incAge(user, 2)
